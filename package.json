@@ -5,6 +5,11 @@
   "main": "index.js",
   "author": "Rogelio Samuel Moreno Corrales <rogeliosamuel621@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/server.js",
+    "dev": "export NODE_ENV=dev && nodemon src/server.ts"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
