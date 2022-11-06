@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose';
+import { HydratedDocument, model, Schema } from 'mongoose';
 import { ITask, TaskStatus } from '../interfaces/task.interface';
 
 const taskSchema = new Schema<ITask>({
@@ -13,4 +13,4 @@ const taskSchema = new Schema<ITask>({
   },
 });
 
-export const UserModel = model<ITask>('users', taskSchema);
+export const TaskModel = model<ITask>('users', taskSchema);
