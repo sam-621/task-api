@@ -2,6 +2,8 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import { connectToDB } from '../core/db/connect';
+import { MONGO_DB_URI } from '../core/config/env.config';
 
 export class App {
   private app: Application;
@@ -9,6 +11,7 @@ export class App {
   constructor() {
     this.app = express();
     this.setupExpressMiddleware();
+    this.setupDb();
   }
 
   public start(port: number) {
@@ -22,5 +25,9 @@ export class App {
     this.app.use(helmet());
     this.app.use(morgan('dev'));
     this.app.use(express.json());
+  }
+
+  private setupDb() {
+    connectToDB(MONGO_DB_URI);
   }
 }
