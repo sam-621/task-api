@@ -38,6 +38,8 @@ export class TasksService {
   }
 
   async delete(taskId: TMongoId) {
-    await this.taskRepository.delete(taskId);
+    const taskDeleted = await this.taskRepository.delete(taskId);
+
+    return new ServiceResponse(StatusCodes.OK, taskDeleted, 'TASK DELETED');
   }
 }

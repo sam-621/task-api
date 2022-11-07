@@ -16,6 +16,7 @@ export class TaskController implements IController {
     this.router.get(`${this.path}`, this.getTasks);
     this.router.post(`${this.path}/create`, this.createTask);
     this.router.put(`${this.path}/update/:id`, this.updateTask);
+    this.router.delete(`${this.path}/delete/:id`, this.deleteTask);
   }
 
   private async getTask(req: Request, res: Response) {
@@ -61,6 +62,18 @@ export class TaskController implements IController {
     const id = req.params.id as unknown as TMongoId;
 
     const { data, message, statusCode } = await taskService.update(id, updateTaskDto);
+
+    return res.status(statusCode).json({
+      data,
+      message,
+    });
+  }
+
+  private async deleteTask(req: Request, res: Response) {
+    const taskService = new TasksService();
+    const id = req.params.id as unknown as TMongoId;
+
+    const { data, message, statusCode } = await taskService.delete(id);
 
     return res.status(statusCode).json({
       data,
