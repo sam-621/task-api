@@ -60,4 +60,13 @@ export class Repository<T> {
   async update<T>(id: TMongoId, input: T, options?: QueryOptions): Promise<TResultDocument<T>> {
     return this.model.findByIdAndUpdate(id, input, { ...options, new: true });
   }
+
+  /**
+   * Method which delete a document which match with the id given
+   * @param id Document id to update
+   * @returns Document deleted
+   */
+  async delete(id: TMongoId): Promise<TResultDocument<T>> {
+    return this.model.findByIdAndDelete(id);
+  }
 }
