@@ -4,8 +4,8 @@ import { TaskStatus } from '../../core/interfaces/task.interface';
 export const createTaskValidator: ValidationChain[] = [
   check('content', 'Content must not be empty').isString().notEmpty(),
   check('ownerId', 'Owner id must not be empty').isString().notEmpty(),
-  check('stats', 'Status must not be different from completed or pending').custom((input) => {
-    if (input === TaskStatus.COMPLETED || input === TaskStatus.PENDING || input === '') {
+  check('status', 'Status must not be different from completed or pending').custom((input) => {
+    if (input === TaskStatus.COMPLETED || input === TaskStatus.PENDING || input === undefined) {
       return true;
     }
 
@@ -15,8 +15,8 @@ export const createTaskValidator: ValidationChain[] = [
 
 export const updateTaskValidator: ValidationChain[] = [
   check('content', 'Content must not be empty').isString().notEmpty(),
-  check('stats', 'Status must not be different from completed or pending').custom((input) => {
-    if (input === TaskStatus.COMPLETED || input === TaskStatus.PENDING || input === '') {
+  check('status', 'Status must not be different from completed or pending').custom((input) => {
+    if (input === TaskStatus.COMPLETED || input === TaskStatus.PENDING || input === undefined) {
       return true;
     }
 
@@ -34,5 +34,5 @@ export const getTasksValidator: ValidationChain[] = [
 ];
 
 export const deleteTaskValidator: ValidationChain[] = [
-  check('ownerId', 'Owner id must not be empty').isString().notEmpty(),
+  check('id', 'ID must be a Mongo ID').isMongoId(),
 ];

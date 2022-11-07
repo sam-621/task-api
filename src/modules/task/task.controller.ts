@@ -2,9 +2,16 @@ import { Request, Response, Router } from 'express';
 import { validationResult } from 'express-validator';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import { IController, TMongoId } from '../../core/interfaces/util.interface';
+import { dataValidator } from '../../core/middlewares/data-validation.middleware';
 import { CreateTaskDto, GetTasksDto, UpdateTaskDto } from './task.dto';
 import { TasksService } from './task.service';
-import { getTaskValidator } from './task.validators';
+import {
+  createTaskValidator,
+  deleteTaskValidator,
+  getTasksValidator,
+  getTaskValidator,
+  updateTaskValidator,
+} from './task.validators';
 
 export class TaskController implements IController {
   path = '/tasks';
@@ -15,24 +22,19 @@ export class TaskController implements IController {
   }
 
   setupRoutes() {
-    this.router.get(`${this.path}/:id`, getTaskValidator, this.getTask);
-    this.router.get(`${this.path}`, this.getTasks);
-    this.router.post(`${this.path}/create`, this.createTask);
-    this.router.put(`${this.path}/update/:id`, this.updateTask);
-    this.router.delete(`${this.path}/delete/:id`, this.deleteTask);
+    this.router.get(`${this.path}/:id`, getTaskValidator, dataValidator, this.getTask);
+    this.router.get(`${this.path}`, getTasksValidator, dataValidator, this.getTasks);
+    this.router.post(`${this.path}/create`, createTaskValidator, dataValidator, this.createTask);
+    this.router.put(`${this.path}/update/:id`, updateTaskValidator, dataValidator, this.updateTask);
+    this.router.delete(
+      `${this.path}/delete/:id`,
+      deleteTaskValidator,
+      dataValidator,
+      this.deleteTask
+    );
   }
 
   private async getTask(req: Request, res: Response) {
-    const errors = validationResult(req);
-    console.log({ errors: errors.array() });
-
-    if (!errors.isEmpty()) {
-      return res.status(StatusCodes.BAD_REQUEST).json({
-        data: errors.array(),
-        message: ReasonPhrases.BAD_REQUEST,
-      });
-    }
-
     const taskService = new TasksService();
     const id = req.params.id as unknown as TMongoId;
 
