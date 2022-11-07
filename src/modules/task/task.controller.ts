@@ -1,6 +1,4 @@
 import { Request, Response, Router } from 'express';
-import { validationResult } from 'express-validator';
-import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import { IController, TMongoId } from '../../core/interfaces/util.interface';
 import { dataValidator } from '../../core/middlewares/data-validation.middleware';
 import { CreateTaskDto, GetTasksDto, UpdateTaskDto } from './task.dto';
@@ -23,7 +21,7 @@ export class TaskController implements IController {
 
   setupRoutes() {
     this.router.get(`${this.path}/:id`, getTaskValidator, dataValidator, this.getTask);
-    this.router.get(`${this.path}`, getTasksValidator, dataValidator, this.getTasks);
+    this.router.get(`${this.path}/owner/:ownerId`, getTasksValidator, dataValidator, this.getTasks);
     this.router.post(`${this.path}/create`, createTaskValidator, dataValidator, this.createTask);
     this.router.put(`${this.path}/update/:id`, updateTaskValidator, dataValidator, this.updateTask);
     this.router.delete(
@@ -48,7 +46,7 @@ export class TaskController implements IController {
 
   private async getTasks(req: Request, res: Response) {
     const taskService = new TasksService();
-    const { ownerId } = req.body as GetTasksDto;
+    const { ownerId } = req.params as GetTasksDto;
 
     const { data, message, statusCode } = await taskService.getAll(ownerId);
 
