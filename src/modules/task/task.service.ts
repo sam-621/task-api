@@ -20,7 +20,7 @@ export class TasksService {
   }
 
   async getAll(ownerId: string) {
-    const tasks = await this.taskRepository.find({ owner: ownerId });
+    const tasks = await this.taskRepository.find({ ownerId: ownerId });
 
     return new ServiceResponse(StatusCodes.OK, tasks, ReasonPhrases.OK);
   }
@@ -28,13 +28,13 @@ export class TasksService {
   async create(input: CreateTaskDto) {
     const newTask = await this.taskRepository.insert(input);
 
-    return newTask;
+    return new ServiceResponse(StatusCodes.CREATED, newTask, ReasonPhrases.CREATED);
   }
 
   async update(taskId: TMongoId, input: UpdateTaskDto) {
     const taskUpdated = await this.taskRepository.update(taskId, input);
 
-    return taskUpdated;
+    return new ServiceResponse(StatusCodes.OK, taskUpdated, ReasonPhrases.OK);
   }
 
   async delete(taskId: TMongoId) {

@@ -4,13 +4,18 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import { connectToDB } from '../core/db/connect';
 import { MONGO_DB_URI } from '../core/config/env.config';
+import { IController } from '../core/interfaces/util.interface';
+import { TaskController } from './task/task.controller';
 
 export class App {
   private app: Application;
+  private controllers: IController[];
 
   constructor() {
     this.app = express();
+    this.controllers = [new TaskController()];
     this.setupExpressMiddleware();
+    this.setupControllers();
     this.setupDb();
   }
 
@@ -25,6 +30,12 @@ export class App {
     this.app.use(helmet());
     this.app.use(morgan('dev'));
     this.app.use(express.json());
+  }
+
+  private setupControllers() {
+    this.controllers.forEach((controller) => {
+      this.app.use('/', controller.router);
+    });
   }
 
   private setupDb() {
