@@ -5,7 +5,7 @@ import { CreateTaskDto, UpdateTaskDto } from './task.dto';
 import { TaskRepository } from './task.repository';
 
 export class TasksService {
-  taskRepository: TaskRepository;
+  private taskRepository: TaskRepository;
 
   constructor() {
     this.taskRepository = new TaskRepository();
