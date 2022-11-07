@@ -16,3 +16,5 @@ yarn add
 yarn build
 yarn start
 ```
+
+Para asegurarse que el proyecto se ejecutó correctamente en la consola debe de salir dos logs "listening" y "DB connected", este último puede demorar en salir ya que es el que avisa la conexión de la base de datos
