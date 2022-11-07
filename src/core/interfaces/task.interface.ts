@@ -1,7 +1,7 @@
 export interface ITask {
   content: string;
   createdAt: Date;
-  owner: string;
+  ownerId: string;
   status: TaskStatus;
 }
 

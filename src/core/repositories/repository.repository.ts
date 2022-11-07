@@ -9,11 +9,11 @@ export class Repository<T> {
   }
 
   /**
-   * Method which search by id in the collection given
+   * Method which search by id in the model given
    * @param id mongo id
    * @returns Document
    */
-  protected async findOneById(id: TMongoId): Promise<TResultDocument<T>> {
+  async findOneById(id: TMongoId): Promise<TResultDocument<T>> {
     const result = await this.model.findById(id);
 
     return result;
@@ -31,17 +31,17 @@ export class Repository<T> {
   }
 
   /**
-   * Method which returns all documents found in the collection given
+   * Method which returns all documents found in the model given matching with filter
    * @returns Array of documents
    */
-  async find(): Promise<TResultDocument<T>[]> {
-    const result = await this.model.find();
+  async find(filter?: FilterQuery<T>): Promise<TResultDocument<T>[]> {
+    const result = await this.model.find(filter);
 
     return result;
   }
 
   /**
-   * Method which insert a document into the collection given
+   * Method which insert a document into the model given
    * @param input Document to insert
    * @returns Document inserted
    */
