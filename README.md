@@ -4,10 +4,10 @@ API para el manejo de tareas
 
 ## Instalación
 
-- Una vez que ya tengas el proyecto clonado en tu maquina, instala todas las dependencias
+- Una vez que ya tengas el proyecto clonado en tu maquina, ingresa a él e instala todas las dependencias
 
 ```
-yarn add
+yarn
 ```
 
 - Haz build del proyecto y ejecutalo
