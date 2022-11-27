@@ -1,20 +1,33 @@
 # TASK API
 
-API para el manejo de tareas
+API for the task management
 
-## Instalación
+## Installation
 
-- Una vez que ya tengas el proyecto clonado en tu maquina, ingresa a él e instala todas las dependencias
+- install all dependencies
 
 ```
 yarn
 ```
 
-- Haz build del proyecto y ejecutalo
+- Build and execute
 
 ```
 yarn build
 yarn start
 ```
 
-Para asegurarse que el proyecto se ejecutó correctamente en la consola debe de salir dos logs "listening" y "DB connected", este último puede demorar en salir ya que es el que avisa la conexión de la base de datos
+- Create a file named .env.local for environment variables
+
+```
+touch .env.local
+cp .env.example .env.local
+
+```
+
+To be sure that the project was executed correctly, in the console is going to appear a log that says "listening" and "DB connected". this last one can take time since it is the one that notifies the db is connected
+
+## Stack
+
+- Express | Typescript
+- Mongo | Mongoose
