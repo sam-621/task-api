@@ -1,5 +1,5 @@
-import { HydratedDocument, model, Schema } from 'mongoose';
-import { ITask, TaskStatus } from '../interfaces/task.interface';
+import { ITask, TaskStatus } from '@/interfaces/task.interface';
+import { model, Schema } from 'mongoose';
 
 const taskSchema = new Schema<ITask>({
   content: { type: String, required: true },

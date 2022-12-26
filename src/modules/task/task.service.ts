@@ -1,6 +1,6 @@
+import { TMongoId } from '@/interfaces/util.interface';
+import { ServiceResponse } from '@/utils/responses';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
-import { TMongoId } from '../../core/interfaces/util.interface';
-import { ServiceResponse } from '../../core/utils/responses';
 import { CreateTaskDto, UpdateTaskDto } from './task.dto';
 import { TaskRepository } from './task.repository';
 

@@ -2,10 +2,10 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import { connectToDB } from '../core/db/connect';
-import { MONGO_DB_URI } from '../core/config/env.config';
-import { IController } from '../core/interfaces/util.interface';
 import { TaskController } from './task/task.controller';
+import { connectToDB } from '@/db/connect';
+import { IController } from '@/interfaces/util.interface';
+import { MONGO_DB_URI } from '@/config/env.config';
 
 export class App {
   private app: Application;

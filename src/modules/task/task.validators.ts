@@ -1,5 +1,5 @@
-import { check, checkSchema, ValidationChain } from 'express-validator';
-import { TaskStatus } from '../../core/interfaces/task.interface';
+import { TaskStatus } from '@/interfaces/task.interface';
+import { check, ValidationChain } from 'express-validator';
 
 export const createTaskValidator: ValidationChain[] = [
   check('content', 'Content must not be empty').isString().notEmpty(),

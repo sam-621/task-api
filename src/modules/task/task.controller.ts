@@ -1,6 +1,6 @@
+import { IController, TMongoId } from '@/interfaces/util.interface';
+import { dataValidator } from '@/middlewares/data-validation.middleware';
 import { Request, Response, Router } from 'express';
-import { IController, TMongoId } from '../../core/interfaces/util.interface';
-import { dataValidator } from '../../core/middlewares/data-validation.middleware';
 import { CreateTaskDto, GetTasksDto, UpdateTaskDto } from './task.dto';
 import { TasksService } from './task.service';
 import {

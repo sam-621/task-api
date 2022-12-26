@@ -1,6 +1,6 @@
-import { ITask } from '../../core/interfaces/task.interface';
-import { Repository } from '../../core/repositories/repository.repository';
-import { TaskModel } from '../../core/schemas/task.schema';
+import { ITask } from '@/interfaces/task.interface';
+import { Repository } from '@/repositories/repository.repository';
+import { TaskModel } from '@/schemas/task.schema';
 
 export class TaskRepository extends Repository<ITask> {
   constructor() {

@@ -6,7 +6,21 @@
     "noImplicitAny": true,
     "moduleResolution": "node",
     "outDir": "dist",
-    
+    "baseUrl": "src",
+    "paths": {
+      "---------- Core ----------": ["--------------------"],
+      "@/config/*": ["core/config/*"],
+      "@/db/*": ["core/db/*"],
+      "@/interfaces/*": ["core/interfaces/*"],
+      "@/middlewares/*": ["core/middlewares/*"],
+      "@/repositories/*": ["core/repositories/*"],
+      "@/schemas/*": ["core/schemas/*"],
+      "@/utils/*": ["core/utils/*"],
+      "@/validator/*": ["core/validator/*"],
+
+      "---------- Modules ----------": ["--------------------"],
+      "@/modules/*": ["core/modules/*"],
+    },
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]

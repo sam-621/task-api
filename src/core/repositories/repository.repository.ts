@@ -1,5 +1,5 @@
+import { TModel, TMongoId, TResultDocument } from '@/interfaces/util.interface';
 import { FilterQuery, QueryOptions } from 'mongoose';
-import { TModel, TMongoId, TResultDocument } from '../../core/interfaces/util.interface';
 
 export class Repository<T> {
   model: TModel<T>;
