@@ -1,7 +1,7 @@
 export class ServiceResponse<T = unknown> {
   statusCode: number;
   data: T | null;
-  message: string = '';
+  message = '';
 
   constructor(statusCode: number, data: T | null, message: string) {
     this.statusCode = statusCode;
