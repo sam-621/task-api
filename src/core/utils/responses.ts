@@ -1,11 +1,23 @@
-export class ServiceResponse<T = unknown> {
+abstract class NetworkResponse {
   statusCode: number;
-  data: T | null;
   message = '';
 
-  constructor(statusCode: number, data: T | null, message: string) {
+  constructor(statusCode: number, message: string) {
     this.statusCode = statusCode;
-    this.data = data;
     this.message = message;
+  }
+}
+export class ServiceResponse<T = unknown> extends NetworkResponse {
+  data: T | null;
+
+  constructor(statusCode: number, data: T | null, message: string) {
+    super(statusCode, message);
+    this.data = data;
+  }
+}
+
+export class MiddlewareResponse extends NetworkResponse {
+  constructor(statusCode: number, message: string) {
+    super(statusCode, message);
   }
 }
